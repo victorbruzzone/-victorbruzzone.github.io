@@ -1,101 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Victor Bruzzone — Political Theorist</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-<style>
-html { scroll-behavior: smooth; scroll-padding-top: 140px; }
-body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }
-h1, h2 { font-family: 'Merriweather', serif; }
-a { color: #2563eb; }
-.section { background: white; border-radius: 1rem; padding: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-.syllabus-link { color: black; text-decoration: underline; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Victor Bruzzone — Political Theorist</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; scroll-padding-top: 140px; }
+    body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }
+    h1, h2 { font-family: 'Merriweather', serif; }
+    a { color: #2563eb; }
+    .section { background: white; border-radius: 1rem; padding: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .syllabus-link { color: black; text-decoration: underline; }
+  </style>
 </head>
 <body class="min-h-screen">
 
+  <!-- Compact Sticky Header -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 py-3 text-center">
+      <h1 class="text-2xl font-bold leading-tight">Victor Bruzzone</h1>
+      <p class="text-sm text-slate-700 leading-snug">SSHRC Postdoctoral Fellow, Pennsylvania State University</p>
+      <p class="italic text-xs text-slate-600 mb-2">Political Theory · Phenomenology · Democratic Innovation</p>
+      <div class="flex justify-center gap-2 mb-2">
+        <a href="https://drive.google.com/file/d/1tceRJm9sP2159tk55fpFTyOHHWmSHYbe/view?usp=drive_link" target="_blank" class="rounded bg-blue-600 px-3 py-1.5 text-white text-sm font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">CV</a>
+        <a href="mailto:victorbruzzone@gmail.com" class="rounded bg-slate-900 px-3 py-1.5 text-white text-sm font-medium hover:bg-black focus:outline-none focus:ring-2 focus:ring-slate-700">Email</a>
+      </div>
+    </div>
+    <!-- Anchor Navigation -->
+    <nav class="border-t border-slate-200">
+      <div class="max-w-4xl mx-auto px-4">
+        <ul class="flex flex-wrap justify-center gap-4 py-2 text-sm text-slate-600">
+          <li><a href="#about" class="hover:text-slate-900">About</a></li>
+          <li><a href="#publications" class="hover:text-slate-900">My Recent Publications</a></li>
+          <li><a href="#teaching" class="hover:text-slate-900">Teaching</a></li>
+          <li><a href="#public-philosophy" class="hover:text-slate-900">Public Philosophy</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
 
-<!-- Compact Sticky Header -->
-<header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
-<div class="max-w-4xl mx-auto px-4 py-3 text-center">
-<h1 class="text-2xl font-bold leading-tight">Victor Bruzzone</h1>
-<p class="text-sm text-slate-700 leading-snug">SSHRC Postdoctoral Fellow, Pennsylvania State University</p>
-<p class="italic text-xs text-slate-600 mb-2">Political Theory · Phenomenology · Democratic Innovation</p>
-<div class="flex justify-center gap-2 mb-2">
-<a href="#" class="rounded bg-blue-600 px-3 py-1.5 text-white text-sm font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">CV</a>
-<a href="mailto:victorbruzzone@gmail.com" class="rounded bg-slate-900 px-3 py-1.5 text-white text-sm font-medium hover:bg-black focus:outline-none focus:ring-2 focus:ring-slate-700">Email</a>
-</div>
-</div>
-<!-- Anchor Navigation -->
-<nav class="border-t border-slate-200">
-<div class="max-w-4xl mx-auto px-4">
-<ul class="flex flex-wrap justify-center gap-4 py-2 text-sm text-slate-600">
-<li><a href="#about" class="hover:text-slate-900">About</a></li>
-<li><a href="#publications" class="hover:text-slate-900">My Recent Publications</a></li>
-<li><a href="#teaching" class="hover:text-slate-900">Teaching</a></li>
-<li><a href="#public-philosophy" class="hover:text-slate-900">Public Philosophy</a></li>
-</ul>
-</div>
-</nav>
-</header>
+  <!-- Main Content -->
+  <main class="max-w-3xl mx-auto px-4 py-10 space-y-10">
+    <section id="about" class="section space-y-4">
+      <h2 class="text-2xl font-bold">About</h2>
+      <p>I study how institutions can foster <strong>mutual understanding</strong> and <strong>civic virtue</strong> in democracy.
+      My research combines <strong>democratic theory</strong>, <strong>phenomenology</strong>, and <strong>empirical design</strong> to examine what kinds of institutions can cultivate both <strong>epistemic</strong> and <strong>solidarity</strong> benefits.</p>
 
+      <p>I completed my <strong>PhD in Political Theory</strong> at the <strong>University of Toronto</strong>, where I developed a phenomenological account of the limits of radical democracy.
+      Here is a link to my dissertation, <em>Radical Democracy Beyond Autonomy: Challenges, Critiques, and Possibilities</em> (2024). <a href="https://utoronto.scholaris.ca/items/a2213c78-5166-4bb2-9868-29ab04f67f56" target="_blank">[Dissertation PDF]</a></p>
 
-<!-- Main Content -->
-<main class="max-w-3xl mx-auto px-4 py-10 space-y-10">
-<section id="about" class="section space-y-4">
-<h2 class="text-2xl font-bold">About</h2>
-<p>I study how institutions can foster <strong>mutual understanding</strong> and <strong>civic virtue</strong> in democracy.
-My research combines <strong>democratic theory</strong>, <strong>phenomenology</strong>, and <strong>empirical design</strong> to examine what kinds of institutions can cultivate both <strong>epistemic</strong> and <strong>solidarity</strong> benefits.</p>
+      <p>I am now a <strong>SSHRC Postdoctoral Fellow</strong> in the Department of Communication Arts & Sciences at <strong>Pennsylvania State University</strong>, working with <strong>John Gastil</strong> on a project testing whether AI can enhance perspective-taking in political disagreement by using the <em><a href="https://onlinelibrary.wiley.com/doi/10.1111/cogs.70126?af=R" target="_blank">Ideological Turing Test</a></em>.</p>
 
+      <p>My work has appeared in the <em>Critical Review of International Social and Political Philosophy</em>, <em>Contemporary Political Theory</em>, and <em>Planning Theory</em>, among others.</p>
+    </section>
 
-<p>I completed my <strong>PhD in Political Theory</strong> at the <strong>University of Toronto</strong>, where I developed a phenomenological account of the limits of radical democracy.
-Here is a link to my dissertation, <em>Radical Democracy Beyond Autonomy: Challenges, Critiques, and Possibilities</em> (2024). <a href="https://utoronto.scholaris.ca/items/a2213c78-5166-4bb2-9868-29ab04f67f56" target="_blank">[Dissertation PDF]</a></p>
+    <section id="publications" class="section space-y-3">
+      <h2 class="text-2xl font-bold">My Recent Publications</h2>
+      <ul class="list-disc list-inside space-y-2">
+        <li><a href="https://drive.google.com/file/d/1cbgsBThFl3zaNicUM4YY8FCgaVfMbdOh/view?usp=sharing" target="_blank">“Elections for Direction, Sortition for Judgment”</a> — <em>Critical Review of International Social and Political Philosophy</em> (accepted 2025)</li>
+        <li><a href="https://doi.org/10.1057/s41296-025-00759-8" target="_blank">“Design Principles for Promoting Deliberative Democracy Online”</a> — <em>Contemporary Political Theory</em> (2025, with John Gastil)</li>
+      </ul>
+    </section>
 
+    <section id="teaching" class="section space-y-2">
+      <h2 class="text-2xl font-bold">Teaching</h2>
+      <ul class="list-disc list-inside space-y-1">
+        <li><strong>Advanced Topics in Peace, Conflict & Justice</strong> — University of Toronto, Munk School (Fall 2024) <a href="#" class="syllabus-link">[Link Syllabus]</a></li>
+        <li><strong>Modern Political Thought: Freedom & Equality</strong> — University of Toronto (Spring 2023) <a href="#" class="syllabus-link">[Link Syllabus]</a></li>
+      </ul>
+    </section>
 
-<p>I am now a <strong>SSHRC Postdoctoral Fellow</strong> in the Department of Communication Arts & Sciences at <strong>Pennsylvania State University</strong>, working with <strong>John Gastil</strong> on a project testing whether AI can enhance perspective-taking in political disagreement by using the <em><a href="https://onlinelibrary.wiley.com/doi/10.1111/cogs.70126?af=R" target="_blank">Ideological Turing Test</a></em>.</p>
+    <section id="public-philosophy" class="section space-y-4">
+      <h2 class="text-2xl font-bold">Public Philosophy</h2>
+      <p>When I’m not working on my academic research, I create and collaborate on <strong>public philosophy projects</strong> that bring complex ideas into broader conversations.</p>
+      <p><strong><a href="https://academicedgelords.com/" target="_blank">Academic Edgelords</a></strong> — A podcast I co-host that explores controversial ideas in political and moral philosophy through rigorous yet open-minded dialogue.</p>
+      <p><strong><a href="https://www.youtube.com/@PillPod" target="_blank">Plastic Pills</a></strong> — A philosophy-focused podcast reaching a large international audience, where we discuss <strong>existentialism, psychoanalysis, and culture</strong> in an accessible format.</p>
+      <p>I have also appeared on other YouTube and podcast platforms to talk with politically curious creators about <strong>mutual understanding</strong>, <strong>phenomenology</strong>, and <strong>sortition democracy</strong>.</p>
+    </section>
+  </main>
 
-
-<p>My work has appeared in the <em>Critical Review of International Social and Political Philosophy</em>, <em>Contemporary Political Theory</em>, and <em>Planning Theory</em>, among others.</p>
-</section>
-
-
-<section id="publications" class="section space-y-3">
-<h2 class="text-2xl font-bold">My Recent Publications</h2>
-<ul class="list-disc list-inside space-y-2">
-<li>“Elections for Direction, Sortition for Judgment” — <em>Critical Review of International Social and Political Philosophy</em> (accepted 2025)</li>
-<li>“Design Principles for Promoting Deliberative Democracy Online” — <em>Contemporary Political Theory</em> (2025, with John Gastil)</li>
-</ul>
-</section>
-
-
-<section id="teaching" class="section space-y-2">
-<h2 class="text-2xl font-bold">Teaching</h2>
-<ul class="list-disc list-inside space-y-1">
-<li><strong>Advanced Topics in Peace, Conflict & Justice</strong> — University of Toronto, Munk School (Fall 2024) <a href="#" class="syllabus-link">[Link Syllabus]</a></li>
-<li><strong>Modern Political Thought: Freedom & Equality</strong> — University of Toronto (Spring 2023) <a href="#" class="syllabus-link">[Link Syllabus]</a></li>
-</ul>
-</section>
-
-
-<section id="public-philosophy" class="section space-y-4">
-<h2 class="text-2xl font-bold">Public Philosophy</h2>
-<p>When I’m not working on my academic research, I create and collaborate on <strong>public philosophy projects</strong> that bring complex ideas into broader conversations.</p>
-<p><strong><a href="https://academicedgelords.com/" target="_blank">Academic Edgelords</a></strong> — A podcast I co-host that explores controversial ideas in political and moral philosophy through rigorous yet open-minded dialogue.</p>
-<p><strong><a href="https://www.youtube.com/@PillPod" target="_blank">Plastic Pills</a></strong> — A philosophy-focused podcast reaching a large international audience, where we discuss <strong>existentialism, psychoanalysis, and culture</strong> in an accessible format.</p>
-<p>I have also appeared on other YouTube and podcast platforms to talk with politically curious creators about <strong>mutual understanding</strong>, <strong>phenomenology</strong>, and <strong>sortition democracy</strong>.</p>
-</section>
-</main>
-
-
-<footer class="text-center text-sm text-slate-500 mt-10 pb-10">
-<p>&copy; 2025 Victor Bruzzone. All rights reserved.</p>
-</footer>
-
+  <footer class="text-center text-sm text-slate-500 mt-10 pb-10">
+    <p>&copy; 2025 Victor Bruzzone. All rights reserved.</p>
+  </footer>
 
 </body>
 </html>
