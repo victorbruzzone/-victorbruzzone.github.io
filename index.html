@@ -11,6 +11,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Enable class-based dark mode for Tailwind -->
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+  <!-- Prevent flash of wrong theme on load -->
+  <script>
+    (function(){
+      try{
+        const ls = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (ls ? ls === 'dark' : prefersDark) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      }catch(e){}
+    })();
+  </script>
 
   <style>
     :root {
@@ -41,6 +59,20 @@
     #site-header .tagline { transition: opacity .2s ease, height .2s ease, margin .2s ease; }
     #site-header.shrink .tagline { opacity: 0; height: 0; margin: 0; overflow: hidden; }
     #site-header.shrink .toolbar { margin-top: -1.3rem; border-top-color: transparent; }
+      /* Explicit dark-mode variable overrides when html has .dark */
+    html.dark {
+      --bg:#0b1220; /* page background */
+      --fg:#e5e7eb; /* foreground text */
+      --muted:#94a3b8;
+      --card:#0f172a; /* cards/sections */
+      --border:#1f2937;
+      --link:#93c5fd;
+      --link-hover:#bfdbfe;
+      --link-visited:#c7d2fe;
+      --header-bg: rgba(2,6,23,0.65);
+    }
+    /* Ensure shrunk header uses darker glass in manual dark mode */
+    .dark #site-header.shrink { background: rgba(2,6,23,0.45); }
   </style>
 </head>
 <body class="min-h-screen">
