@@ -45,16 +45,16 @@
 
     .section { background: var(--card); border-radius: 0.75rem; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid var(--border); }
 
-    #site-header { position: sticky; top: 0; z-index: 50; background: var(--header-bg); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); transition: background 0.4s ease, box-shadow 0.4s ease; }
-    #brand { transition: transform .3s ease, padding .3s ease, opacity .3s ease; transform-origin: top center; }
+    #site-header { position: sticky; top: 0; z-index: 50; background: var(--header-bg); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); transition: background 0.4s ease; will-change: background; }
+    #brand { transition: transform .3s ease, padding .3s ease, opacity .3s ease; transform-origin: top center; will-change: transform, opacity; }
     #site-header.shrink { background: rgba(255,255,255,0.65); box-shadow: 0 2px 12px rgba(0,0,0,0.2); }
     #site-header.shrink #brand { transform: scale(0.55); opacity: 0.95; padding-top: .1rem; padding-bottom: .1rem; }
     #site-header.shrink .toolbar-inner { padding-top: .1rem !important; padding-bottom: .1rem !important; }
     .portrait { width: 14rem; height: 14rem; }
-    #site-header .toolbar { transition: margin .25s ease, padding .25s ease, border-color .25s ease; }
+    #site-header .toolbar { transition: transform .25s ease, border-color .25s ease; will-change: transform; }
     #site-header .tagline { transition: opacity .2s ease, height .2s ease, margin .2s ease; }
     #site-header.shrink .tagline { opacity: 0; height: 0; margin: 0; overflow: hidden; }
-    #site-header.shrink .toolbar { margin-top: -1.3rem; border-top-color: transparent; }
+    #site-header.shrink .toolbar { transform: translateY(-1.3rem); border-top-color: transparent; }
   </style>
 </head>
 <body class="min-h-screen">
@@ -135,12 +135,25 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-    const header = document.getElementById('site-header');
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      if (y > 60) header.classList.add('shrink'); else header.classList.remove('shrink');
-    }, { passive: true });
 
+    // Use IntersectionObserver to toggle shrink class without scroll jank
+    const header = document.getElementById('site-header');
+    let sentinel = document.getElementById('shrink-trigger');
+    if (!sentinel) {
+      sentinel = document.createElement('div');
+      sentinel.id = 'shrink-trigger';
+      sentinel.style.position = 'relative';
+      sentinel.style.height = '60px';
+      header.insertAdjacentElement('afterend', sentinel);
+    }
+    const io = new IntersectionObserver((entries) => {
+      const e = entries[0];
+      if (e.isIntersecting) header.classList.remove('shrink');
+      else header.classList.add('shrink');
+    }, { threshold: 1 });
+    io.observe(sentinel);
+
+    // Theme toggle
     const root = document.documentElement;
     const btn = document.getElementById('theme-toggle');
     const applyTheme = (mode) => {
