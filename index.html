@@ -42,7 +42,7 @@
     }
 
     html{ scroll-behavior:smooth; scroll-padding-top:120px; }
-    body{ font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    body{ font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); overflow-x:hidden; }
     h1,h2{ font-family:Merriweather, Georgia, serif; }
     a, a em, em a{ color:var(--link)!important; font-weight:600; text-decoration:underline; transition:color .2s ease; }
     a:hover{ color:var(--link-hover)!important; }
@@ -89,9 +89,26 @@
     .brand-action{ display:none; opacity:0; transform:translateY(-4px); transition: opacity .2s ease, transform .2s ease; }
     #site-header.shrink .brand-action{ display:inline-flex; opacity:1; transform:translateY(0); }
 
-    /* Mobile-friendly primary nav */
+    /* Primary nav — WRAPS (no horizontal scrolling) */
     nav[aria-label="Primary"] ul{
-      display:flex; gap:1rem; white-space:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:thin;
+      display:flex; flex-wrap:wrap; gap:.5rem 1rem; justify-content:center;
+      white-space:normal; /* allow wrapping */
+      overflow:visible; /* no horizontal scroll */
+      padding-inline:.5rem;
+    }
+    nav[aria-label="Primary"] li{ list-style:none; }
+    nav[aria-label="Primary"] a{
+      display:inline-block; text-decoration:none; border-radius:.5rem; padding:.25rem .5rem;
+      line-height:1.2; text-underline-offset:2px;
+    }
+
+    /* Toolbar grid tweaks */
+    .toolbar-inner{ grid-template-columns: 1fr auto 1fr; }
+
+    /* Small screens: reduce nav text a hair and tighten spacing */
+    @media (max-width: 420px){
+      nav[aria-label="Primary"] a{ font-size:.9rem; padding:.2rem .4rem; }
+      .toolbar-inner{ gap:.5rem; }
     }
 
     /* Ensure FAB doesn't cover footer on phones */
@@ -113,7 +130,7 @@
 
     <!-- Toolbar: CV | Nav | Email -->
     <div class="toolbar bg-transparent">
-      <div class="toolbar-inner max-w-4xl mx-auto grid grid-cols-3 items-center gap-2 px-4 py-2">
+      <div class="toolbar-inner max-w-4xl mx-auto grid items-center gap-2 px-4 py-2">
         <div id="toolbar-left" class="flex justify-start">
           <a id="cv-link" href="https://drive.google.com/file/d/1tceRJm9sP2159tk55fpFTyOHHWmSHYbe/view?usp=drive_link" target="_blank" rel="noopener noreferrer"
              class="rounded border border-blue-400 text-blue-700 dark:text-blue-300 dark:border-blue-500 bg-white/70 dark:bg-slate-800/70 px-3 py-1 text-sm font-semibold no-underline">
@@ -121,8 +138,8 @@
           </a>
         </div>
 
-        <nav aria-label="Primary" class="flex justify-center">
-          <ul class="px-2 text-sm font-medium text-slate-700 dark:text-slate-300">
+        <nav aria-label="Primary" class="flex justify-center" role="navigation">
+          <ul class="text-sm font-medium text-slate-700 dark:text-slate-300">
             <li><a href="#about">About</a></li>
             <li><a href="#publications">Publications</a></li>
             <li><a href="#teaching">Teaching</a></li>
@@ -258,3 +275,4 @@
   </script>
 </body>
 </html>
+
