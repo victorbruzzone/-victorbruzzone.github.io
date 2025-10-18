@@ -11,9 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = { darkMode: 'class' };
-  </script>
+  <script>tailwind.config = { darkMode: 'class' };</script>
 
   <!-- Initial theme from system / saved pref -->
   <script>
@@ -31,75 +29,80 @@
   </script>
 
   <style>
-    :root {
-      --bg: #f9fafb; --fg: #1e293b; --muted: #475569; --card: #ffffff; --border: #e2e8f0;
-      --link: #1e3a8a; --link-hover: #3b82f6; --link-visited: #4338ca;
-      /* Light header stays subtle and crisp */
+    :root{
+      --bg:#f9fafb; --fg:#1e293b; --muted:#475569; --card:#ffffff; --border:#e2e8f0;
+      --link:#1e3a8a; --link-hover:#3b82f6; --link-visited:#4338ca;
       --header-bg: rgba(255,255,255,0.85);
     }
-    html.dark {
+    html.dark{
       --bg:#0b1220; --fg:#e5e7eb; --muted:#94a3b8; --card:#0f172a; --border:#1f2937;
       --link:#93c5fd; --link-hover:#bfdbfe; --link-visited:#c7d2fe;
-      /* Deeper dark header (no grey tint) */
+      /* Deep dark header (no grey) */
       --header-bg: rgba(10,10,15,0.90);
     }
-    html { scroll-behavior: smooth; scroll-padding-top: 120px; }
-    body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--fg); }
-    h1, h2 { font-family: 'Merriweather', serif; }
-    a, a em, em a { color: var(--link) !important; font-weight: 600; text-decoration: underline; transition: color 0.2s ease-in-out; }
-    a:hover, a em:hover, em a:hover { color: var(--link-hover) !important; }
-    a:visited, a em:visited, em a:visited { color: var(--link-visited) !important; }
 
-    .section { background: var(--card); border-radius: 0.75rem; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid var(--border); }
+    html{ scroll-behavior:smooth; scroll-padding-top:120px; }
+    body{ font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    h1,h2{ font-family:Merriweather, Georgia, serif; }
+    a, a em, em a{ color:var(--link)!important; font-weight:600; text-decoration:underline; transition:color .2s ease; }
+    a:hover{ color:var(--link-hover)!important; }
+    a:visited{ color:var(--link-visited)!important; }
+
+    .section{ background:var(--card); border-radius:.75rem; padding:2rem; border:1px solid var(--border); box-shadow:0 2px 8px rgba(0,0,0,.05); }
 
     /* Header + shrink behavior */
-    #site-header { position: sticky; top: 0; z-index: 50; background: var(--header-bg); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); transition: background 0.4s ease, transform .25s ease; will-change: background; }
-    #brand { transition: transform .3s ease, padding .3s ease, opacity .3s ease; transform-origin: top center; will-change: transform, opacity; }
-    /* Use same background token in both states (prevents grey in dark) */
-    #site-header.shrink { background: var(--header-bg); box-shadow: 0 2px 12px rgba(0,0,0,0.2); }
-    #site-header.shrink #brand { transform: scale(0.58); opacity: 0.98; padding-top: .1rem; padding-bottom: .1rem; }
-    #site-header .toolbar { transition: transform .25s ease, border-color .25s ease, padding .25s ease; will-change: transform; }
-    #site-header.shrink .toolbar { transform: translateY(-1.2rem); border-top-color: transparent; }
-    #site-header .tagline { transition: opacity .2s ease, height .2s ease, margin .2s ease; }
-    #site-header.shrink .tagline { opacity: 0; height: 0; margin: 0; overflow: hidden; }
+    #site-header{
+      position:sticky; top:0; z-index:50; background:var(--header-bg);
+      backdrop-filter:blur(10px); border-bottom:1px solid var(--border);
+      transition: background .25s ease, box-shadow .25s ease;
+    }
+    #brand{ transition: transform .28s ease, padding .28s ease, opacity .28s ease; transform-origin: top center; }
+    #site-header.shrink{ background:var(--header-bg); box-shadow:0 2px 12px rgba(0,0,0,.2); }
+    #site-header.shrink #brand{ transform:scale(.58); opacity:.98; padding-top:.1rem; padding-bottom:.1rem; }
 
-    .portrait { width: 14rem; height: 14rem; }
+    /* Toolbar movement */
+    #site-header .toolbar{ transition: transform .24s ease, padding .24s ease; }
+    #site-header.shrink .toolbar{ transform: translateY(-1.15rem); }
+
+    /* Tagline collapse on shrink */
+    .tagline{ transition: opacity .2s ease, height .2s ease, margin .2s ease; }
+    #site-header.shrink .tagline{ opacity:0; height:0; margin:0; overflow:hidden; }
+
+    /* Portrait (perfect circle) */
+    .portrait{ width:14rem; height:14rem; border-radius:9999px; object-fit:cover; object-position:50% 20%; }
 
     /* Floating Theme FAB */
-    #theme-fab {
-      position: fixed; right: 1rem; bottom: 1rem; z-index: 70;
-      border-radius: 9999px; padding: .65rem .8rem; font-weight: 700;
-      border: 1px solid var(--border);
+    #theme-fab{
+      position:fixed; right:1rem; bottom:1rem; z-index:70;
+      border-radius:9999px; padding:.65rem .85rem; font-weight:700; line-height:1;
+      border:1px solid var(--border);
       background: color-mix(in oklab, var(--card) 85%, transparent);
       backdrop-filter: blur(6px);
-      color: var(--fg);
-      box-shadow: 0 8px 24px rgba(0,0,0,.15);
-      transition: transform .12s ease;
+      color:var(--fg);
+      box-shadow:0 8px 24px rgba(0,0,0,.15);
+      transition: transform .1s ease;
     }
-    #theme-fab:active { transform: scale(0.98); }
+    #theme-fab:active{ transform:scale(.98); }
 
-    /* Brand action placeholders (show only when shrunk) */
-    .brand-row { gap: .5rem; }
-    .brand-action { display: none; }
-    #site-header.shrink .brand-action { display: inline-flex; }
+    /* Brand placeholders for actions when shrunk */
+    .brand-row{ gap:.5rem; align-items:center; justify-content:center; }
+    .brand-action{ display:none; opacity:0; transform:translateY(-4px); transition: opacity .2s ease, transform .2s ease; }
+    #site-header.shrink .brand-action{ display:inline-flex; opacity:1; transform:translateY(0); }
 
-    /* Mobile-friendly nav: allow horizontal scroll if cramped */
-    nav[aria-label="Primary"] ul {
-      overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin;
-      white-space: nowrap;
+    /* Mobile-friendly primary nav */
+    nav[aria-label="Primary"] ul{
+      display:flex; gap:1rem; white-space:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:thin;
     }
 
-    /* Give bottom space so FAB doesn’t cover footer on small screens */
-    @media (max-width: 640px) {
-      footer { padding-bottom: 4.5rem; }
-    }
+    /* Ensure FAB doesn't cover footer on phones */
+    @media (max-width:640px){ footer{ padding-bottom:4.5rem; } }
   </style>
 </head>
 <body class="min-h-screen">
   <header id="site-header">
     <div id="brand" class="max-w-4xl mx-auto px-4 py-3 text-center">
-      <!-- Brand row: CV | Name | Email (only visible when shrunk) -->
-      <div class="brand-row flex items-center justify-center">
+      <!-- CV | Name | Email (CV/Email appear here when shrunk) -->
+      <div class="brand-row flex">
         <span id="brand-left" class="brand-action"></span>
         <h1 class="text-3xl font-bold leading-tight">Victor Bruzzone</h1>
         <span id="brand-right" class="brand-action"></span>
@@ -109,14 +112,17 @@
     </div>
 
     <!-- Toolbar: CV | Nav | Email -->
-    <div class="toolbar border-t border-transparent dark:border-transparent bg-transparent backdrop-blur">
+    <div class="toolbar bg-transparent">
       <div class="toolbar-inner max-w-4xl mx-auto grid grid-cols-3 items-center gap-2 px-4 py-2">
         <div id="toolbar-left" class="flex justify-start">
-          <a id="cv-link" href="https://drive.google.com/file/d/1tceRJm9sP2159tk55fpFTyOHHWmSHYbe/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="rounded border border-blue-400 text-blue-700 dark:text-blue-300 dark:border-blue-500 bg-white/70 dark:bg-slate-800/70 px-3 py-1 text-sm font-semibold">CV</a>
+          <a id="cv-link" href="https://drive.google.com/file/d/1tceRJm9sP2159tk55fpFTyOHHWmSHYbe/view?usp=drive_link" target="_blank" rel="noopener noreferrer"
+             class="rounded border border-blue-400 text-blue-700 dark:text-blue-300 dark:border-blue-500 bg-white/70 dark:bg-slate-800/70 px-3 py-1 text-sm font-semibold no-underline">
+            CV
+          </a>
         </div>
 
         <nav aria-label="Primary" class="flex justify-center">
-          <ul class="flex gap-4 text-sm font-medium text-slate-700 dark:text-slate-300 px-2">
+          <ul class="px-2 text-sm font-medium text-slate-700 dark:text-slate-300">
             <li><a href="#about">About</a></li>
             <li><a href="#publications">Publications</a></li>
             <li><a href="#teaching">Teaching</a></li>
@@ -126,14 +132,18 @@
         </nav>
 
         <div id="toolbar-right" class="flex justify-end">
-          <a id="email-link" href="mailto:victorbruzzone@gmail.com" class="rounded border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 bg-white/70 dark:bg-slate-800/70 px-3 py-1 text-sm font-semibold">Email</a>
+          <a id="email-link" href="mailto:victorbruzzone@gmail.com"
+             class="rounded border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 bg-white/70 dark:bg-slate-800/70 px-3 py-1 text-sm font-semibold no-underline">
+            Email
+          </a>
         </div>
       </div>
     </div>
   </header>
 
   <div class="flex justify-center mt-8">
-    <img src="IMG_6213.jpg" alt="Victor Bruzzone portrait" width="224" height="224" loading="eager" class="portrait rounded-full object-cover object-[50%_20%] shadow-md border border-slate-200 dark:border-slate-700" />
+    <img src="IMG_6213.jpg" alt="Victor Bruzzone portrait" width="224" height="224" loading="eager"
+         class="portrait shadow-md border border-slate-200 dark:border-slate-700" />
   </div>
 
   <main class="max-w-3xl mx-auto px-4 py-10 space-y-10">
@@ -187,7 +197,7 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // IntersectionObserver to toggle header shrink
+    // Create a sentinel right under the header to detect shrink
     const header = document.getElementById('site-header');
     let sentinel = document.getElementById('shrink-trigger');
     if (!sentinel) {
@@ -197,6 +207,8 @@
       sentinel.style.height = '60px';
       header.insertAdjacentElement('afterend', sentinel);
     }
+
+    // Toggle shrink + move actions
     const io = new IntersectionObserver((entries) => {
       const e = entries[0];
       if (e.isIntersecting) {
@@ -209,7 +221,7 @@
     }, { threshold: 1 });
     io.observe(sentinel);
 
-    // Move CV/Email between toolbar and beside name on shrink
+    // Move CV/Email between toolbar and brand row
     const cv = document.getElementById('cv-link');
     const email = document.getElementById('email-link');
     const toolbarLeft = document.getElementById('toolbar-left');
@@ -227,7 +239,7 @@
       }
     }
 
-    // Theme toggle (for FAB)
+    // Theme toggle (FAB)
     const root = document.documentElement;
     const fab = document.getElementById('theme-fab');
     function applyTheme(mode){
@@ -240,7 +252,8 @@
 
     fab.addEventListener('click', () => {
       const next = root.classList.contains('dark') ? 'light' : 'dark';
-      localStorage.setItem('theme', next); applyTheme(next);
+      localStorage.setItem('theme', next);
+      applyTheme(next);
     });
   </script>
 </body>
