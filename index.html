@@ -34,7 +34,7 @@
       --link: #1e3a8a; --link-hover: #3b82f6; --link-visited: #4338ca; --header-bg: rgba(255,255,255,0.85);
     }
     html.dark {
-      --bg:#0b1220; --fg:#e5e7eb; --muted:#94a3b8; --card:#0f172a; --border:#1f2937; --link:#93c5fd; --link-hover:#bfdbfe; --link-visited:#c7d2fe; --header-bg: rgba(2,6,23,0.65);
+      --bg:#0b1220; --fg:#e5e7eb; --muted:#94a3b8; --card:#0f172a; --border:#1f2937; --link:#93c5fd; --link-hover:#bfdbfe; --link-visited:#c7d2fe; --header-bg: rgba(2,6,23,0.72);
     }
     html { scroll-behavior: smooth; scroll-padding-top: 120px; }
     body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--fg); }
@@ -45,30 +45,58 @@
 
     .section { background: var(--card); border-radius: 0.75rem; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid var(--border); }
 
-    #site-header { position: sticky; top: 0; z-index: 50; background: var(--header-bg); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); transition: background 0.4s ease; will-change: background; }
-    #brand { transition: transform .3s ease, padding .3s ease, opacity .3s ease; transform-origin: top center; will-change: transform, opacity; }
-    #site-header.shrink { background: rgba(255,255,255,0.65); box-shadow: 0 2px 12px rgba(0,0,0,0.2); }
+    #site-header { position: sticky; top: 0; z-index: 50; background: var(--header-bg); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); transition: all 0.4s ease; }
+    #brand { transition: transform .3s ease, padding .3s ease, opacity .3s ease; transform-origin: top center; }
+
+    /* Normal state */
+    .toolbar-inner { padding-top: 0.4rem; padding-bottom: 0.4rem; transition: padding 0.3s ease; }
+
+    /* Shrink state */
+    #site-header.shrink { background: var(--header-bg); box-shadow: 0 2px 12px rgba(0,0,0,0.2); }
     #site-header.shrink #brand { transform: scale(0.55); opacity: 0.95; padding-top: .1rem; padding-bottom: .1rem; }
-    #site-header.shrink .toolbar-inner { padding-top: .1rem !important; padding-bottom: .1rem !important; }
-    .portrait { width: 14rem; height: 14rem; }
-    #site-header .toolbar { transition: transform .25s ease, border-color .25s ease; will-change: transform; }
-    #site-header .tagline { transition: opacity .2s ease, height .2s ease, margin .2s ease; }
-    #site-header.shrink .tagline { opacity: 0; height: 0; margin: 0; overflow: hidden; }
-    #site-header.shrink .toolbar { transform: translateY(-1.3rem); border-top-color: transparent; }
+    #site-header.shrink .toolbar-inner { padding-top: 0rem !important; padding-bottom: 0rem !important; }
+
+    #site-header.shrink .toolbar { transform: translateY(-1.35rem); padding-top: 0; padding-bottom: 0; }
+
+    #cv-top, #email-top { display: none; }
+    #site-header.shrink #cv-top, #site-header.shrink #email-top { display: inline-flex; }
+    #site-header.shrink .cv-slot, #site-header.shrink .email-slot { opacity: 0; pointer-events: none; }
+
+    #site-header nav a { color: var(--link) !important; text-decoration: none; font-weight: 600; }
+    #site-header nav a:hover { text-decoration: underline; }
+
+    /* Make toolbar's top border visible so the line hugs the nav */
+    #site-header .toolbar { 
+      transition: transform .25s ease, border-color .25s ease, padding .25s ease; 
+      will-change: transform, padding; 
+      border-top: 1px solid var(--border);
+    }
+
+    .toolbar-inner ul { display: flex; justify-content: center; align-items: center; gap: 1rem; white-space: nowrap; }
   </style>
 </head>
 <body class="min-h-screen">
   <header id="site-header">
+    <div id="cv-top" class="absolute top-2 left-4 flex items-center gap-2">
+      <a href="https://drive.google.com/file/d/1tceRJm9sP2159tk55fpFTyOHHWmSHYbe/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="rounded border border-blue-400 text-blue-700 dark:text-blue-300 dark:border-blue-500 bg-white/70 dark:bg-slate-800/70 px-3 py-1 text-sm font-semibold">CV</a>
+    </div>
+    <div id="email-top" class="absolute top-2 right-4 flex items-center gap-2">
+      <a href="mailto:victorbruzzone@gmail.com" class="rounded border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 bg-white/70 dark:bg-slate-800/70 px-3 py-1 text-sm font-semibold">Email</a>
+    </div>
+
     <div id="brand" class="max-w-4xl mx-auto px-4 py-3 text-center">
       <h1 class="text-3xl font-bold leading-tight">Victor Bruzzone</h1>
       <p class="text-sm text-slate-700 dark:text-slate-300 leading-snug">SSHRC Postdoctoral Fellow, Pennsylvania State University</p>
       <p class="tagline italic text-xs text-slate-600 dark:text-slate-400">Political Theory · Phenomenology · Democratic Innovation</p>
     </div>
+
     <div class="toolbar border-t border-transparent dark:border-transparent bg-transparent backdrop-blur">
-      <div class="toolbar-inner max-w-4xl mx-auto flex justify-between items-center px-4 py-2">
-        <button id="theme-toggle" aria-label="Toggle dark mode" class="rounded border border-slate-300 dark:border-slate-600 px-3 py-1 text-sm font-semibold bg-white/70 dark:bg-slate-800/70 text-slate-700 dark:text-slate-200">🌙</button>
-        <nav aria-label="Primary">
-          <ul class="flex gap-4 text-sm font-medium text-slate-700 dark:text-slate-300">
+      <div class="toolbar-inner max-w-4xl mx-auto grid grid-cols-3 items-center px-4">
+        <div class="cv-slot flex justify-start items-center">
+          <a href="https://drive.google.com/file/d/1tceRJm9sP2159tk55fpFTyOHHWmSHYbe/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="rounded border border-blue-400 text-blue-700 dark:text-blue-300 dark:border-blue-500 bg-white/70 dark:bg-slate-800/70 px-3 py-1 text-sm font-semibold">CV</a>
+        </div>
+        <nav aria-label="Primary" class="justify-self-center">
+          <ul>
             <li><a href="#about">About</a></li>
             <li><a href="#publications">Publications</a></li>
             <li><a href="#teaching">Teaching</a></li>
@@ -76,13 +104,14 @@
             <li><a href="#public-philosophy">Public Philosophy</a></li>
           </ul>
         </nav>
-        <div class="flex gap-2">
-          <a href="https://drive.google.com/file/d/1tceRJm9sP2159tk55fpFTyOHHWmSHYbe/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="rounded border border-blue-400 text-blue-700 dark:text-blue-300 dark:border-blue-500 bg-white/70 dark:bg-slate-800/70 px-3 py-1 text-sm font-semibold">CV</a>
+        <div class="email-slot flex justify-end items-center">
           <a href="mailto:victorbruzzone@gmail.com" class="rounded border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 bg-white/70 dark:bg-slate-800/70 px-3 py-1 text-sm font-semibold">Email</a>
         </div>
       </div>
     </div>
   </header>
+
+  <button id="theme-toggle" aria-label="Toggle dark mode" class="fixed bottom-4 left-4 z-50 rounded-full border border-slate-300 dark:border-slate-600 p-3 text-base font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 shadow-lg">🌙</button>
 
   <div class="flex justify-center mt-8">
     <img src="IMG_6213.jpg" alt="Victor Bruzzone portrait" width="224" height="224" loading="eager" class="portrait rounded-full object-cover object-[50%_20%] shadow-md border border-slate-200 dark:border-slate-700" />
@@ -135,8 +164,6 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Use IntersectionObserver to toggle shrink class without scroll jank
     const header = document.getElementById('site-header');
     let sentinel = document.getElementById('shrink-trigger');
     if (!sentinel) {
@@ -153,7 +180,6 @@
     }, { threshold: 1 });
     io.observe(sentinel);
 
-    // Theme toggle
     const root = document.documentElement;
     const btn = document.getElementById('theme-toggle');
     const applyTheme = (mode) => {
