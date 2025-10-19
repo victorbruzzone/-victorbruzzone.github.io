@@ -32,13 +32,12 @@
     :root{
       --bg:#f9fafb; --fg:#1e293b; --muted:#475569; --card:#ffffff; --border:#e2e8f0;
       --link:#1e3a8a; --link-hover:#3b82f6; --link-visited:#4338ca;
-      --header-bg: rgba(255,255,255,0.85);
+      --header-bg: rgba(255,255,255,0.88);
     }
     html.dark{
       --bg:#0b1220; --fg:#e5e7eb; --muted:#94a3b8; --card:#0f172a; --border:#1f2937;
       --link:#93c5fd; --link-hover:#bfdbfe; --link-visited:#c7d2fe;
-      /* Deep dark header (no grey) */
-      --header-bg: rgba(10,10,15,0.90);
+      --header-bg: rgba(10,10,15,0.92);
     }
 
     html{ scroll-behavior:smooth; scroll-padding-top:120px; }
@@ -58,11 +57,11 @@
     }
     #brand{ transition: transform .28s ease, padding .28s ease, opacity .28s ease; transform-origin: top center; }
     #site-header.shrink{ background:var(--header-bg); box-shadow:0 2px 12px rgba(0,0,0,.2); }
-    #site-header.shrink #brand{ transform:scale(.58); opacity:.98; padding-top:.1rem; padding-bottom:.1rem; }
+    #site-header.shrink #brand{ transform:scale(.58); opacity:.98; padding-top:.05rem; padding-bottom:.05rem; }
 
-    /* Toolbar movement */
-    #site-header .toolbar{ transition: transform .24s ease, padding .24s ease; }
-    #site-header.shrink .toolbar{ transform: translateY(-1.15rem); }
+    /* Toolbar: gets thinner on scroll */
+    .toolbar{ transition: padding .24s ease, transform .24s ease; padding:.5rem 0; }
+    #site-header.shrink .toolbar{ padding:.1rem 0; transform: translateY(-.35rem); }
 
     /* Tagline collapse on shrink */
     .tagline{ transition: opacity .2s ease, height .2s ease, margin .2s ease; }
@@ -130,7 +129,7 @@
 
     <!-- Toolbar: CV | Nav | Email -->
     <div class="toolbar bg-transparent">
-      <div class="toolbar-inner max-w-4xl mx-auto grid items-center gap-2 px-4 py-2">
+      <div class="toolbar-inner max-w-4xl mx-auto grid items-center gap-2 px-4">
         <div id="toolbar-left" class="flex justify-start">
           <a id="cv-link" href="https://drive.google.com/file/d/1tceRJm9sP2159tk55fpFTyOHHWmSHYbe/view?usp=drive_link" target="_blank" rel="noopener noreferrer"
              class="rounded border border-blue-400 text-blue-700 dark:text-blue-300 dark:border-blue-500 bg-white/70 dark:bg-slate-800/70 px-3 py-1 text-sm font-semibold no-underline">
@@ -275,4 +274,3 @@
   </script>
 </body>
 </html>
-
